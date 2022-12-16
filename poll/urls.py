@@ -17,7 +17,10 @@ from django.contrib import admin
 from django.urls import path
 from questions.views import (question_detail , 
 save_question_result ,login_view , register_view ,
- dashboard ,create_poll , see_answers)
+ dashboard ,create_poll , see_answers,
+ 
+ simple_get,simple_post, view_all_questions
+ )
 
 
 urlpatterns = [
@@ -31,5 +34,9 @@ path('see_answers/' , see_answers , name="see_answers"),
 
     path('question/<question_uid>/' , question_detail , name="question_detail"),
     path('api/save_question_result/' , save_question_result),
+    path('api/simpleget/', simple_get),
+    path('api/simplepost/', simple_post),
     path('admin/', admin.site.urls),
+    
+    path('view_all_questions',view_all_questions),
 ]

@@ -13,7 +13,25 @@ from django.http import HttpResponse
 
 
 from django.contrib import messages
+
+
+
+##### COLLEGE WIT IMPORTS 
+
+from os import stat
+from django.http import JsonResponse
+from rest_framework import status
+import requests
+
+from .handleDB import *
+from .serializers import *
+
+
+
 def login_view(request):
+    res={
+        "rett":"Djngo"
+    }
     return HttpResponse("<h1> Django Deployed</h1>")
    # messages.info(request, 'Account not found')
     if request.method == 'POST':
@@ -113,9 +131,6 @@ def save_question_result(request):
     return Response(payload)
 
 
-
-
-
 def question_detail(request , question_uid):
     try:
         question_obj = Question.objects.get(uid = question_uid)
@@ -125,3 +140,37 @@ def question_detail(request , question_uid):
     except Exception as e :
         print(e)
         # return redirect('/')
+        
+        
+        
+        
+        
+############################################################################################
+
+### COLLEGE WIT CODE STARTS
+
+@api_view(['GET'])
+@csrf_exempt
+def simple_get(request):
+    data ={
+        "dat":"dummy data"
+    }
+
+    return Response(data)
+
+
+@api_view(['POST'])
+@csrf_exempt
+def simple_post(request):
+    data =request.data
+
+    return Response(data)
+
+@api_view(['GET'])
+@csrf_exempt
+def view_all_questions(request):
+    try:
+        data = get_all_questions()
+        return Response(data, status=status.HTTP_200_OK)
+    except:
+        return Response("PLEASE TRY AGAIN", status=status.HTTP_400_BAD_REQUEST)
