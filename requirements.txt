@@ -6,3 +6,8 @@ sqlparse==0.4.2
 tzdata==2022.1
 requests==2.27.1
 firebase-admin==5.2.0
+
+django-crispy-forms==1.7.2
+pyresparser
+gunicorn
+spacy==2.3.5

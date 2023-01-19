@@ -22,7 +22,7 @@ save_question_result ,login_view , register_view ,
  simple_get,simple_post,register,login,register_contributor,update_password,edit_profile,
  all_contributors,all_tags,all_users,user_info,top5_contributors,total_questions_count,total_users_count,total_views_count,
  front_page_analytics,view_all_questions,view_search_questions,view_trending_questions,view_specific_question,
- add_question,add_answer,upvote_answer,upvote_question,tagwise_question,view_unanswered_questions
+ add_question,add_answer,upvote_answer,upvote_question,tagwise_question,view_unanswered_questions, newpage
  )
 
 
@@ -73,4 +73,6 @@ path('see_answers/' , see_answers , name="see_answers"),
 
 	path('all_tags',all_tags),
 	path('tagwise_question',tagwise_question),
+ 
+    path('newpath',newpage),
 ]

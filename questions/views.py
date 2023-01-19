@@ -26,6 +26,17 @@ import requests
 from .handleDB import *
 from .serializers import *
 
+##### RESUME PARSER IMPORTS
+
+from pyresparser import ResumeParser
+from django.contrib import messages
+from django.conf import settings
+from django.db import IntegrityError
+from django.http import FileResponse, Http404
+from django.http import JsonResponse
+from docx import Document
+import os
+
 
 
 def login_view(request):
@@ -140,6 +151,34 @@ def question_detail(request , question_uid):
     except Exception as e :
         print(e)
         # return redirect('/')
+        
+        
+        
+        
+############################################################################################
+
+### RESUME PARSER CODE
+
+def newpage(request):
+    datar={
+        "dat":"dummy data"
+    }
+    if request.method == 'GET':
+        filed='mediafiles\CV.pdf'
+        try:
+            doc = Document()
+            with open(filed, 'r') as file:
+                doc.add_paragraph(file.read())
+            doc.save("text.docx")
+            data = ResumeParser('text.docx').get_extracted_data()
+            print(data['skills'])
+            #datar['skills']=data['skills']
+        except:
+            data = ResumeParser(filed).get_extracted_data()
+            print(data['skills'])
+            
+        return JsonResponse(data)
+    return JsonResponse(datar)
         
         
         
